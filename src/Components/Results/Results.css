@@ -81,3 +81,36 @@
 .highlighted {
   background-color: #ffd700;
 }
+
+
+@media (max-width: 768px) {
+  .searchContainer {
+    width: 80%;
+  }
+
+  .searchIcon {
+    right: auto;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .searchResults {
+    height: 10rem;
+  }
+  
+  .resultImage {
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .resultName,
+  .resultRole {
+    font-size: 0.9rem;
+  }
+
+  .labelTitle{
+    font-size: 2rem;
+  }
+  
+}
