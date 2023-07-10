@@ -8,7 +8,7 @@ const Results = () => {
   const [searchCompleted, setSearchCompleted] = useState(false);
   const loadEmployeeData = async () => {
     try {
-      const res = await axios.get("https://64ac614a931d8900814d50c7--resonant-cat-d28ea4.netlify.app//api/employees/");
+      const res = await axios.get("https://64ac614a931d8900814d50c7--resonant-cat-d28ea4.netlify.app/api/employees/");
       setSearchResults(res.data);
     } catch (error) {
       console.log(error);
