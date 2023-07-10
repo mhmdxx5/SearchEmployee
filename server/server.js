@@ -4,7 +4,8 @@ import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import employeeRoutes from "./routes/EmployeeRoutes.js";
 import * as dotenv from "dotenv";
-import { createServer, proxy } from "netlify-lambda";
+import  createServer from "netlify-lambda";
+import  proxy from "netlify-lambda";
 
 dotenv.config();
 const app = express();
