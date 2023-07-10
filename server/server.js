@@ -24,7 +24,7 @@ app.use(cookieParser());
 connectDB();
 
 //Routes
-app.use("/api/employees", employeeRoutes);
+app.use("https://64ac614a931d8900814d50c7--resonant-cat-d28ea4.netlify.app/api/employees", employeeRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ "message": "Bad Method Request!" });
@@ -32,4 +32,4 @@ app.use((req, res) => {
 // Creating Express Server
 const PORT = process.env.PORT || 5000;
 // const port = 5000;
-app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
