@@ -1,0 +1,83 @@
+.labelTitle {
+  font-size: 5rem;
+  display: block;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #008B8B;
+  text-transform: uppercase;
+}
+
+.searchLabel {
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 1rem;
+  color: #ffff;
+}
+
+.searchContainer {
+  background-color: #e5e7eb;
+  border-radius: 1rem;
+  width: 40%;
+  position: relative;
+  border: 1px solid black;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchInput {
+  padding: 0.5rem;
+  border: 1px solid #9ca3af;
+  border-radius: 1rem;
+  width: 100%;
+  outline: none;
+}
+
+.searchIcon {
+  font-family: "FontAwesome";
+  background-color: #008B8B;
+  color: #fff;
+  border-radius: 9999px;
+  height: 2.5rem;
+  width: 2.5rem;
+  text-align: center;
+  padding-top: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  padding-top: 10px;
+  right: -40px;
+}
+
+.searchResults {
+  margin-top: 0.5rem;
+  height: 16rem;
+  overflow-y: scroll;
+}
+
+.searchResult {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.resultImage {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+}
+
+.resultName {
+  color: #840404;
+}
+
+.resultRole {
+  color: #9ca3af;
+}
+
+.highlighted {
+  background-color: #ffd700;
+}
