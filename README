@@ -1,0 +1,30 @@
+Employee Search React App
+A simple React application for searching and displaying employee information.
+
+🚀 Getting Started
+To run the Employee Search React App locally, follow these steps:
+
+Clone the repository:
+git clone https://github.com/your-username/employee-search-react-app.git
+Navigate to the project directory:
+
+Install the dependencies:
+
+npm install
+Start the development server:
+
+npm start
+Open your browser and visit http://localhost:3000 to view the app.
+
+💡 Usage
+Enter a search query in the search bar to filter the employee list.
+Click the search button or press Enter to initiate the search.
+The search results will be displayed below the search bar.
+Employee names and roles that match the search query will be highlighted.
+The "Search Completed" label will appear once the search is finished.
+🛠️ Technologies Used
+React
+Axios
+CSS
+
+Feel free to customize and enhance the application as per your requirements. Enjoy searching for employees with ease! 😊
