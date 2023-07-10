@@ -24,7 +24,7 @@ app.use(cookieParser());
 connectDB();
 
 //Routes
-app.use("https://64ac614a931d8900814d50c7--resonant-cat-d28ea4.netlify.app/api/employees", employeeRoutes);
+app.use("/api/employees", employeeRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ "message": "Bad Method Request!" });
