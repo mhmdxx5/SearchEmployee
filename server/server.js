@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json({ limit: "50mb" }));
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://64ac614a931d8900814d50c7--resonant-cat-d28ea4.netlify.app",
   // origin: "*",
   credentials: true,
   //access-control-allow-credentials:true
