@@ -4,9 +4,6 @@ import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import employeeRoutes from "./routes/EmployeeRoutes.js";
 import * as dotenv from "dotenv";
-import  createServer from "netlify-lambda";
-import  proxy from "netlify-lambda";
-
 dotenv.config();
 const app = express();
 app.use(express.json({ limit: "50mb" }));
@@ -32,16 +29,7 @@ app.use("/api/employees", employeeRoutes);
 app.use((req, res) => {
   res.status(404).json({ "message": "Bad Method Request!" });
 });
-
-// Create an Express server instance
-const server = createServer(app);
-
-// Define serverless function handlers
-exports.handler = (event, context) => {
-  // Proxy the incoming request to the Express server
-  proxy(server, event, context);
-};
-// // Creating Express Server
-// const PORT = process.env.PORT || 5000;
-// // const port = 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Creating Express Server
+const PORT = process.env.PORT || 5000;
+// const port = 5000;
+app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
