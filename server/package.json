@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "Muhammed Otmani",
   "license": "ISC",
@@ -18,7 +18,7 @@
     "mongoose": "^6.7.4"
   },
   "devDependencies": {
-    "netlify-lambda": "^2.0.16",
-    "nodemon": "^2.0.20"
+    "@flydotio/dockerfile": "^0.3.2",
+    "netlify-lambda": "^2.0.16"
   }
 }
