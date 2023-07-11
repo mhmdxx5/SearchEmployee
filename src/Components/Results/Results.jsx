@@ -16,7 +16,7 @@ const Results = () => {
       if (cachedData) {
         setSearchResults(JSON.parse(cachedData));
       } else {
-        const res = await axios.get("http://localhost:5000/api/employees/");
+        const res = await axios.get("https://searchserver.fly.dev/api/employees/");
         setSearchResults(res.data);
         localStorage.setItem("employeeData", JSON.stringify(res.data));
       }
