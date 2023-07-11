@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../Results/Results.css";
 
 const Results = () => {
@@ -84,8 +83,8 @@ const Results = () => {
               searchResults
                 ?.filter(
                   (emp) =>
-                    emp?.name?.toLowerCase().includes(searchQuery) ||
-                    emp?.role?.toLowerCase().includes(searchQuery)
+                    emp?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    emp?.role?.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .map((employee) => (
                   <li key={employee.id} className="searchResult">
