@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../Results/Results.css";
+import axios from "axios";
+
 
 const Results = () => {
   const [searchResults, setSearchResults] = useState();
@@ -9,20 +12,18 @@ const Results = () => {
 
   const loadEmployeeData = async () => {
     try {
-      const cache = await caches.open("employeeCache");
-      const cachedResponse = await cache.match("https://searchserver.fly.dev/api/employees/");
-  
-      if (cachedResponse) {
-        const cachedData = await cachedResponse.json();
-        setSearchResults(cachedData);
+      const cachedData = localStorage.getItem("employeeData");
+      if (cachedData) {
+        setSearchResults(JSON.parse(cachedData));
       } else {
-        const response = await fetch("https://searchserver.fly.dev/api/employees/");
-        const data = await response.json();
-        setSearchResults(data);
-        cache.put("https://searchserver.fly.dev/api/employees/", response.clone());
+        const res = await axios.get("https://searchserver.fly.dev/api/employees/");
+        setSearchResults(res.data);
+        localStorage.setItem("employeeData", JSON.stringify(res.data));
       }
     } catch (error) {
-      console.log(error);
+      toast.error(`An error occurred: ${error} while loading employee data. Please try again later.`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -64,8 +65,8 @@ const Results = () => {
       <label className="searchLabel">
         Click on the search bar to learn our suggestion
       </label>
-      <div className="searchContainer">
-        <div className="searchBar">
+      <div className="searchBarResults">
+        <div className="searchContainer">
           <input
             type="text"
             placeholder="Search employees..."
@@ -78,14 +79,15 @@ const Results = () => {
             onClick={handleClickSearch}
           ></i>
         </div>
+      </div>
         {searchQuery && (
-          <ul className="searchResults">
+          <ul className={searchCompleted ? "searchBarResults searchCompleted" : "searchBarResults"}>
             {searchResults &&
               searchResults
                 ?.filter(
                   (emp) =>
-                    emp?.name?.toLowerCase().includes(searchQuery) ||
-                    emp?.role?.toLowerCase().includes(searchQuery)
+                    emp?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    emp?.role?.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .map((employee) => (
                   <li key={employee.id} className="searchResult">
@@ -106,7 +108,8 @@ const Results = () => {
                 ))}
           </ul>
         )}
-      </div>
+      {/* </div> */}
+      <ToastContainer />
     </>
   );
 };
