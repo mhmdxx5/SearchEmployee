@@ -9,13 +9,17 @@ const Results = () => {
 
   const loadEmployeeData = async () => {
     try {
-      const cachedData = localStorage.getItem("employeeData");
-      if (cachedData) {
-        setSearchResults(JSON.parse(cachedData));
+      const cache = await caches.open("employeeCache");
+      const cachedResponse = await cache.match("https://searchserver.fly.dev/api/employees/");
+  
+      if (cachedResponse) {
+        const cachedData = await cachedResponse.json();
+        setSearchResults(cachedData);
       } else {
-        const res = await axios.get("https://searchserver.fly.dev/api/employees/");
-        setSearchResults(res.data);
-        localStorage.setItem("employeeData", JSON.stringify(res.data));
+        const response = await fetch("https://searchserver.fly.dev/api/employees/");
+        const data = await response.json();
+        setSearchResults(data);
+        cache.put("https://searchserver.fly.dev/api/employees/", response.clone());
       }
     } catch (error) {
       console.log(error);
