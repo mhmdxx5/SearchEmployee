@@ -6,14 +6,22 @@ const Results = () => {
   const [searchResults, setSearchResults] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchCompleted, setSearchCompleted] = useState(false);
+
   const loadEmployeeData = async () => {
     try {
-      const res = await axios.get("https://searchserver.fly.dev/api/employees/");
-      setSearchResults(res.data);
+      const cachedData = localStorage.getItem("employeeData");
+      if (cachedData) {
+        setSearchResults(JSON.parse(cachedData));
+      } else {
+        const res = await axios.get("https://searchserver.fly.dev/api/employees/");
+        setSearchResults(res.data);
+        localStorage.setItem("employeeData", JSON.stringify(res.data));
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     loadEmployeeData();
   }, []);
@@ -66,32 +74,34 @@ const Results = () => {
             onClick={handleClickSearch}
           ></i>
         </div>
-        <ul className="searchResults">
-          {searchResults &&
-            searchResults
-              ?.filter(
-                (emp) =>
-                  emp?.name?.toLowerCase().includes(searchQuery) ||
-                  emp?.role?.toLowerCase().includes(searchQuery)
-              )
-              .map((employee) => (
-                <li key={employee.id} className="searchResult">
-                  <img
-                    src={employee.photo}
-                    alt={employee.name}
-                    className="resultImage"
-                  />
-                  <div>
-                    <p className="resultName">
-                      {searchCompleted ? employee.name : highlightText(employee.name)}
-                    </p>
-                    <p className="resultRole">
-                      {searchCompleted ? employee.role : highlightText(employee.role)}
-                    </p>
-                  </div>
-                </li>
-              ))}
-        </ul>
+        {searchQuery && (
+          <ul className="searchResults">
+            {searchResults &&
+              searchResults
+                ?.filter(
+                  (emp) =>
+                    emp?.name?.toLowerCase().includes(searchQuery) ||
+                    emp?.role?.toLowerCase().includes(searchQuery)
+                )
+                .map((employee) => (
+                  <li key={employee.id} className="searchResult">
+                    <img
+                      src={employee.photo}
+                      alt={employee.name}
+                      className="resultImage"
+                    />
+                    <div>
+                      <p className="resultName">
+                        {searchCompleted ? employee.name : highlightText(employee.name)}
+                      </p>
+                      <p className="resultRole">
+                        {searchCompleted ? employee.role : highlightText(employee.role)}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+          </ul>
+        )}
       </div>
     </>
   );
