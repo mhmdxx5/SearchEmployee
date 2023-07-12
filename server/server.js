@@ -12,7 +12,7 @@ const app = express();
 // Middleware
 const corsConfig = function (req, res, next) {
   // CORS configuration
-  res.header('Access-Control-Allow-Origin', 'https://master--resonant-cat-d28ea4.netlify.app/');
+  res.header('Access-Control-Allow-Origin', 'https://master--resonant-cat-d28ea4.netlify.app');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE');
   res.header('Access-Control-Allow-Headers', 'x-access-token, Origin, X-Requested-With, Content-Type, Accept, Authorization');
